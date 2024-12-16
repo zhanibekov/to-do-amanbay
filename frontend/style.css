@@ -35,10 +35,10 @@ h1 {
   justify-content: space-between;
 }
 
-.checkbox {
+.choose {
   border-radius: 12px;
-  border: 1 solid #532385;
-  padding: 5px;
+  border: 1px solid #532385;
+  padding: 10px;
 }
 
 .button {
