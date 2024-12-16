@@ -1,35 +1,26 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+const cors = require('cors');
 app.use(cors());
 
 
-app.use(express.json());
+let tasks = []; // Массив для хранения задач
 
-app.get('/', (req, res) => {
-    res.send('Hello world');
-})
+app.use(express.json()); // Для обработки JSON в теле запроса
 
+// Получить все задачи
 app.get('/tasks', (req, res) => {
-    const tasks = [
-        {id: 1, task: 'Learn JavaScrpit'},
-        {id: 2, task: 'Build Backend'},
-        {id: 3, task: 'Create to-do app'}
-    ];
-    res.json(tasks);
-})
-// app.use(cors({ origin: 'http://localhost:3001' })); // Укажите порт вашего фронтенда
+  res.json(tasks);
+});
 
-
+// Добавить новую задачу
 app.post('/tasks', (req, res) => {
-    const newTask = req.body;
-    if(!newTask || !newTask.task) {
-        return res.status(400).json({error: 'Task description is required'});
-    }
-    newTask.id = Date.now();
-    res.status(201).json(newTask);
-})
+  const newTask = req.body; // Получаем задачу из тела запроса
+  tasks.push(newTask); // Добавляем в массив
+  res.status(201).json(newTask); // Возвращаем добавленную задачу
+});
 
 app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-  });
+  console.log(`Server is running on http://localhost:${port}`);
+});

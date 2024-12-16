@@ -3,57 +3,36 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo for junior</title>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <div>
       <h1>Todo for junior</h1>
+      <div class="tasksList" id="taskList"></div>
       <div class="wrapper">
         <div class="container">
-          <div class="input">
-            <input type="radio" class="checkbox" />
-            <p class="text"></p>
-            <button class="button">
-              <svg
-                width="50px"
-                height="50px"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M4 7H20"
-                  stroke="#000000"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M6 10L7.70141 19.3578C7.87432 20.3088 8.70258 21 9.66915 21H14.3308C15.2974 21 16.1257 20.3087 16.2986 19.3578L18 10"
-                  stroke="#000000"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-                <path
-                  d="M9 5C9 3.89543 9.89543 3 11 3H13C14.1046 3 15 3.89543 15 5V7H9V5Z"
-                  stroke="#000000"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
+          <!-- Поле ввода -->
           <div class="enter">
-            <form action="#">
-              <input type="text" class="enter2" />
-              <button class="button2" type="submit">Add</button>
+            <form id="taskForm">
+              <input
+                type="text"
+                class="enter2"
+                id="taskInput"
+                placeholder="Enter a task"
+              />
+              <button class="button2" id="addTaskButton" type="submit">
+                Add
+              </button>
             </form>
+          </div>
+          <!-- Список задач -->
+  
+
           </div>
         </div>
       </div>
     </div>
+    <script src="./script.js"></script>
   </body>
 </html>
