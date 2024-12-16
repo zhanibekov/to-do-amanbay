@@ -59,4 +59,22 @@ h1 {
 
 .enter2 {
   padding: 20px 30px;
+  background-color: #532385;
+  border: none;
+  color: #fff;
+  border-radius: 8px;
+}
+
+.button2 {
+  padding: 15px 20px;
+  background-color: #18181b;
+  color: #532385;
+  border: none;
+  border: 1px solid #532385;
+  border-radius: 8px;
+  margin-left: 5px;
+}
+.button2:hover {
+  background-color: #532385;
+  color: #18181b;
 }
