@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 const port = 3000;
+app.use(cors());
+
 
 app.use(express.json());
 
@@ -16,6 +18,8 @@ app.get('/tasks', (req, res) => {
     ];
     res.json(tasks);
 })
+// app.use(cors({ origin: 'http://localhost:3001' })); // Укажите порт вашего фронтенда
+
 
 app.post('/tasks', (req, res) => {
     const newTask = req.body;
