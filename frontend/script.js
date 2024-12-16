@@ -1,7 +1,6 @@
-// API URL
-const apiUrl = 'http://localhost:3000/tasks';
+const apiUrl = 'http://localhost:3000/tasks'; // URL вашего API
 
-// Fetch tasks from the backend
+// Функция загрузки задач
 async function fetchTasks() {
   try {
     const response = await fetch(apiUrl);
@@ -12,21 +11,20 @@ async function fetchTasks() {
   }
 }
 
-// Display tasks on the page
+// Функция отображения задач
 function displayTasks(tasks) {
   const taskList = document.getElementById('taskList');
-  taskList.innerHTML = ''; // Clear existing tasks
+  taskList.innerHTML = ''; // Очистка текущего списка задач
+
   tasks.forEach(task => {
     const taskElement = document.createElement('div');
     taskElement.classList.add('task');
-    taskElement.innerHTML = `
-      <p>${task.text}</p>
-    `;
+    taskElement.innerHTML = `${task.task}`;
     taskList.appendChild(taskElement);
   });
 }
 
-// Add a new task to the backend
+// Функция добавления задачи
 async function addTask(taskText) {
   try {
     const response = await fetch(apiUrl, {
@@ -35,13 +33,12 @@ async function addTask(taskText) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        task: taskText,
-        id: Date.now(), // Use current timestamp as task ID
+        task: taskText, // Поле должно совпадать с серверным
       }),
     });
 
     if (response.ok) {
-      fetchTasks(); // Reload tasks after adding
+      fetchTasks(); // Обновить список задач
     } else {
       console.error('Failed to add task');
     }
@@ -50,15 +47,19 @@ async function addTask(taskText) {
   }
 }
 
-// Handle add task button click
-document.getElementById('addTaskButton').addEventListener('click', () => {
+// Обработчик кнопки Add Task
+document.getElementById('taskForm').addEventListener('submit', (event) => {
+  event.preventDefault(); // Отключаем стандартное поведение формы
   const taskInput = document.getElementById('taskInput');
   const taskText = taskInput.value.trim();
+
   if (taskText) {
-    addTask(taskText);
-    taskInput.value = ''; // Clear input field
+    addTask(taskText); // Добавляем задачу через API
+    taskInput.value = ''; // Очищаем поле ввода
+  } else {
+    console.warn('Task input is empty'); // Лог предупреждения
   }
 });
 
-// Initial load of tasks
-fetchTasks();
+// Загрузка задач при загрузке страницы
+document.addEventListener('DOMContentLoaded', fetchTasks);
